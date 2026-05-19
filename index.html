@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>B-YOU PH</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{--pink:#f9a8d4;--light-pink:#fce7f3;--pale:#fff0f6;--deep-pink:#ec4899;--dark:#1a1a1a;--gray:#6b7280;}
+  body{font-family:'Segoe UI',sans-serif;background:#fff;color:var(--dark);}
+
+  /* NAV */
+  nav{background:#fff;border-bottom:1px solid var(--light-pink);padding:14px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+  .logo{font-size:1.6rem;font-weight:900;letter-spacing:-1px;color:var(--dark);}
+  .logo span{color:var(--deep-pink);font-size:0.75rem;vertical-align:super;border:1.5px solid var(--deep-pink);border-radius:50%;padding:1px 4px;margin-left:2px;}
+  nav ul{list-style:none;display:flex;gap:28px;}
+  nav ul a{text-decoration:none;color:var(--gray);font-size:0.9rem;transition:color .2s;}
+  nav ul a:hover{color:var(--deep-pink);}
+  .nav-cta{background:var(--deep-pink);color:#fff!important;padding:8px 18px;border-radius:20px;font-weight:600;}
+
+  /* HERO */
+  .hero{background:linear-gradient(135deg,#fff0f6 0%,#fce7f3 50%,#fbcfe8 100%);padding:90px 40px 70px;text-align:center;}
+  .hero-tag{display:inline-block;background:var(--light-pink);color:var(--deep-pink);font-size:0.8rem;font-weight:600;padding:6px 16px;border-radius:20px;margin-bottom:18px;letter-spacing:1px;}
+  .hero h1{font-size:3.2rem;font-weight:900;line-height:1.15;margin-bottom:16px;}
+  .hero h1 em{color:var(--deep-pink);font-style:normal;}
+  .hero p{color:var(--gray);font-size:1.1rem;max-width:520px;margin:0 auto 32px;}
+  .btn{display:inline-block;background:var(--deep-pink);color:#fff;padding:14px 34px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1rem;transition:transform .2s,box-shadow .2s;}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px #ec489950;}
+  .btn-outline{background:#fff;color:var(--deep-pink);border:2px solid var(--deep-pink);margin-left:12px;}
+  .hero-badges{margin-top:40px;display:flex;justify-content:center;gap:24px;flex-wrap:wrap;}
+  .badge{background:#fff;border-radius:12px;padding:12px 20px;font-size:0.85rem;color:var(--gray);box-shadow:0 2px 12px #f9a8d430;display:flex;align-items:center;gap:8px;}
+  .badge span{font-size:1.2rem;}
+
+  /* SECTION */
+  section{padding:70px 40px;}
+  .section-title{text-align:center;margin-bottom:48px;}
+  .section-title h2{font-size:2rem;font-weight:800;margin-bottom:8px;}
+  .section-title p{color:var(--gray);font-size:1rem;}
+  .pink-line{display:block;width:50px;height:4px;background:var(--deep-pink);border-radius:4px;margin:12px auto 0;}
+
+  /* PRODUCTS */
+  .products-bg{background:var(--pale);}
+  .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px;max-width:1100px;margin:0 auto;}
+  .card{background:#fff;border-radius:20px;padding:28px 22px;text-align:center;box-shadow:0 2px 16px #f9a8d425;transition:transform .25s,box-shadow .25s;border:1.5px solid #fce7f3;}
+  .card:hover{transform:translateY(-6px);box-shadow:0 10px 32px #ec489930;}
+  .card-icon{font-size:2.4rem;margin-bottom:12px;}
+  .card h3{font-size:1.05rem;font-weight:700;margin-bottom:6px;}
+  .card .desc{font-size:0.82rem;color:var(--gray);margin-bottom:14px;line-height:1.5;}
+  .price{font-size:1.3rem;font-weight:800;color:var(--deep-pink);margin-bottom:14px;}
+  .price small{font-size:0.75rem;color:var(--gray);font-weight:400;display:block;}
+  .card-btn{background:var(--light-pink);color:var(--deep-pink);border:none;border-radius:20px;padding:9px 22px;font-weight:600;font-size:0.88rem;cursor:pointer;transition:background .2s;}
+  .card-btn:hover{background:var(--deep-pink);color:#fff;}
+
+  /* ABOUT */
+  .about-inner{max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+  .about-text h2{font-size:2rem;font-weight:800;margin-bottom:14px;}
+  .about-text p{color:var(--gray);line-height:1.8;margin-bottom:12px;font-size:0.97rem;}
+  .about-img{background:linear-gradient(135deg,#fce7f3,#fbcfe8);border-radius:24px;height:280px;display:flex;align-items:center;justify-content:center;font-size:5rem;}
+
+  /* FAQ */
+  .faq-bg{background:var(--pale);}
+  .faq-list{max-width:720px;margin:0 auto;}
+  .faq-item{background:#fff;border-radius:14px;margin-bottom:14px;border:1.5px solid #fce7f3;overflow:hidden;}
+  .faq-q{padding:18px 22px;font-weight:600;font-size:0.97rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+  .faq-q:hover{background:var(--light-pink);}
+  .faq-a{padding:0 22px;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s;}
+  .faq-a.open{max-height:200px;padding:0 22px 16px;}
+  .faq-a p{color:var(--gray);font-size:0.9rem;line-height:1.7;}
+  .chevron{transition:transform .3s;font-size:1rem;color:var(--deep-pink);}
+  .chevron.open{transform:rotate(180deg);}
+
+  /* CONTACT */
+  .contact-inner{max-width:560px;margin:0 auto;}
+  .form-group{margin-bottom:18px;}
+  .form-group label{display:block;font-size:0.88rem;font-weight:600;margin-bottom:6px;color:var(--dark);}
+  .form-group input,.form-group textarea,.form-group select{width:100%;padding:12px 16px;border:1.5px solid #fce7f3;border-radius:12px;font-size:0.95rem;outline:none;transition:border .2s;background:#fff;font-family:inherit;}
+  .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--deep-pink);}
+  .form-group textarea{resize:vertical;min-height:110px;}
+  .submit-btn{width:100%;background:var(--deep-pink);color:#fff;border:none;padding:14px;border-radius:30px;font-size:1rem;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s;}
+  .submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px #ec489950;}
+  .success-msg{display:none;background:#dcfce7;border:1px solid #bbf7d0;color:#166534;padding:14px 20px;border-radius:12px;margin-top:16px;text-align:center;font-weight:600;}
+
+  /* FOOTER */
+  footer{background:var(--dark);color:#d1d5db;text-align:center;padding:36px 20px;}
+  footer .footer-logo{font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:8px;}
+  footer .footer-logo span{color:var(--deep-pink);}
+  footer p{font-size:0.85rem;margin-bottom:6px;}
+  footer .socials{margin:14px 0;display:flex;justify-content:center;gap:16px;}
+  footer .socials a{color:#d1d5db;text-decoration:none;font-size:0.88rem;transition:color .2s;}
+  footer .socials a:hover{color:var(--pink);}
+
+  @media(max-width:700px){
+    .hero h1{font-size:2rem;}
+    .about-inner{grid-template-columns:1fr;}
+    nav ul{gap:14px;}
+    .hero{padding:60px 20px 50px;}
+    section{padding:50px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">B-YOU<span>PH</span></div>
+  <ul>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#faq">FAQs</a></li>
+    <li><a href="#contact" class="nav-cta">Order Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">✨ Affordable Wellness Essentials</div>
+  <h1>Be the Best Version<br>of <em>You</em></h1>
+  <p>Premium wellness injectables & aesthetic products — made accessible for every Filipino. Quality you can trust, prices you'll love.</p>
+  <a href="#products" class="btn">Shop Now</a>
+  <a href="#contact" class="btn btn-outline">Order via Form</a>
+  <div class="hero-badges">
+    <div class="badge"><span>💊</span> Premium Quality</div>
+    <div class="badge"><span>🇵🇭</span> Ships Nationwide</div>
+    <div class="badge"><span>💰</span> Affordable Prices</div>
+    <div class="badge"><span>🔒</span> Safe & Legit</div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="products" class="products-bg">
+  <div class="section-title">
+    <h2>Our Products</h2>
+    <p>Premium wellness & aesthetic essentials at the best prices</p>
+    <span class="pink-line"></span>
+  </div>
+  <div class="products-grid">
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>NAD+</h3>
+      <p class="desc">Cellular energy & anti-aging support. Boosts metabolism, brain function & longevity.</p>
+      <div class="price">₱ — <small>Message us for pricing</small></div>
+      <button class="card-btn" onclick="orderProduct('NAD+')">Order Now</button>
+    </div>
+    <div class="card">
+      <div class="card-icon">🧬</div>
+      <h3>GHK-Cu</h3>
+      <p class="desc">Copper peptide for skin repair, collagen production & hair growth stimulation.</p>
+      <div class="price">₱ — <small>Message us for pricing</small></div>
+      <button class="card-btn" onclick="orderProduct('GHK-Cu')">Order Now</button>
+    </div>
+    <div class="card">
+      <div class="card-icon">🍋</div>
+      <h3>Lemon Bottle</h3>
+      <p class="desc">Premium fat-dissolving solution for targeted body contouring and slimming.</p>
+      <div class="price">₱ — <small>Message us for pricing</small></div>
+      <button class="card-btn" onclick="orderProduct('Lemon Bottle')">Order Now</button>
+    </div>
+    <div class="card">
+      <div class="card-icon">✨</div>
+      <h3>Glutathione</h3>
+      <p class="desc">Master antioxidant for skin whitening, brightening & immune system boost.</p>
+      <div class="price">₱ — <small>Message us for pricing</small></div>
+      <button class="card-btn" onclick="orderProduct('Glutathione')">Order Now</button>
+    </div>
+    <div class="card">
+      <div class="card-icon">💉</div>
+      <h3>Tirzepatide</h3>
+      <p class="desc">Dual GIP/GLP-1 receptor agonist for effective weight management & blood sugar control.</p>
+      <div class="price">₱ — <small>Message us for pricing</small></div>
+      <button class="card-btn" onclick="orderProduct('Tirzepatide')">Order Now</button>
+    </div>
+    <div class="card">
+      <div class="card-icon">💫</div>
+      <h3>More Products</h3>
+      <p class="desc">We carry more wellness & aesthetic products. Message us for the full list!</p>
+      <div class="price">₱ — <small>Inquire for details</small></div>
+      <button class="card-btn" onclick="orderProduct('General Inquiry')">Inquire</button>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-img">🌸</div>
+    <div class="about-text">
+      <h2>About B-YOU PH</h2>
+      <p>We believe that feeling your best shouldn't cost a fortune. B-YOU PH was built with one mission: to make premium wellness and aesthetic products accessible to every Filipino.</p>
+      <p>From anti-aging peptides to fat-dissolving solutions, we source only high-quality products and offer them at prices that are fair and honest.</p>
+      <p><strong style="color:var(--deep-pink)">Be you. Be well. Be beautiful. 🌸</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="faq-bg">
+  <div class="section-title">
+    <h2>FAQs & Safety Info</h2>
+    <p>Common questions answered</p>
+    <span class="pink-line"></span>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Are your products safe? <span class="chevron">▼</span></div>
+      <div class="faq-a"><p>Yes. We only source from reputable suppliers and ensure all products are handled and stored properly. However, we always recommend consulting a licensed healthcare professional before use.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I place an order? <span class="chevron">▼</span></div>
+      <div class="faq-a"><p>You can place an order by filling out the contact/order form below, or by messaging us directly on our social media pages. We'll get back to you with pricing and payment details.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Do you ship nationwide? <span class="chevron">▼</span></div>
+      <div class="faq-a"><p>Yes! We ship to all areas in the Philippines via trusted couriers. Shipping fees and estimated delivery times will be confirmed upon order.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Who should NOT use these products? <span class="chevron">▼</span></div>
+      <div class="faq-a"><p>Pregnant or breastfeeding women, individuals with serious medical conditions, and those currently on prescription medication should consult a doctor before purchasing or using any of our products.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What payment methods do you accept? <span class="chevron">▼</span></div>
+      <div class="faq-a"><p>We accept GCash, Maya, bank transfer (BDO/BPI), and cash on delivery for select areas. Payment details will be shared once your order is confirmed.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-title">
+    <h2>Contact / Order Form</h2>
+    <p>Fill in the form below and we'll get back to you shortly 🌸</p>
+    <span class="pink-line"></span>
+  </div>
+  <div class="contact-inner">
+    <div class="form-group">
+      <label>Full Name *</label>
+      <input type="text" id="fname" placeholder="Your full name"/>
+    </div>
+    <div class="form-group">
+      <label>Contact Number *</label>
+      <input type="tel" id="fphone" placeholder="09XX XXX XXXX"/>
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="femail" placeholder="your@email.com"/>
+    </div>
+    <div class="form-group">
+      <label>Product of Interest *</label>
+      <select id="fproduct">
+        <option value="">-- Select a product --</option>
+        <option>NAD+</option>
+        <option>GHK-Cu</option>
+        <option>Lemon Bottle</option>
+        <option>Glutathione</option>
+        <option>Tirzepatide</option>
+        <option>General Inquiry</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Your Location / City</label>
+      <input type="text" id="flocation" placeholder="e.g. Laguna, Metro Manila"/>
+    </div>
+    <div class="form-group">
+      <label>Message / Additional Notes</label>
+      <textarea id="fmsg" placeholder="Any questions or special requests..."></textarea>
+    </div>
+    <button class="submit-btn" onclick="submitForm()">Send Order Inquiry 💌</button>
+    <div class="success-msg" id="successMsg">✅ Thank you! We'll be in touch soon. 🌸</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">B-YOU<span>PH</span></div>
+  <p>Premium Wellness & Aesthetic Products for Every Filipino</p>
+  <div class="socials">
+    <a href="#">📘 Facebook</a>
+    <a href="#">📸 Instagram</a>
+    <a href="#">💬 Messenger</a>
+    <a href="#">📱 TikTok</a>
+  </div>
+  <p style="font-size:0.78rem;color:#6b7280;">© 2025 B-YOU PH. All rights reserved. | For inquiries, please consult a licensed professional.</p>
+</footer>
+
+<script>
+function toggleFaq(el){
+  const ans=el.nextElementSibling;
+  const chev=el.querySelector('.chevron');
+  ans.classList.toggle('open');
+  chev.classList.toggle('open');
+}
+function orderProduct(name){
+  document.getElementById('fproduct').value=name;
+  document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+}
+function submitForm(){
+  const n=document.getElementById('fname').value.trim();
+  const p=document.getElementById('fphone').value.trim();
+  const pr=document.getElementById('fproduct').value;
+  if(!n||!p||!pr){alert('Please fill in all required fields (Name, Contact Number, Product).'); return;}
+  document.getElementById('successMsg').style.display='block';
+  document.getElementById('fname').value='';
+  document.getElementById('fphone').value='';
+  document.getElementById('femail').value='';
+  document.getElementById('fproduct').value='';
+  document.getElementById('flocation').value='';
+  document.getElementById('fmsg').value='';
+  setTimeout(()=>document.getElementById('successMsg').style.display='none',5000);
+}
+</script>
+</body>
+</html>
